@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+
+	<script src="../jquery/jquery-1.11.0.min.js"></script>
+
+	<link href="../fancyform/fancyform-min.css" rel="stylesheet">
+
+	<script src="../fancyform/fancyform-min.js"></script>
+
+	<script src="../google-code-prettify/prettify.js" type="text/javascript"></script>
+	<link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div style="margin: 20px 20px 20px;">
+	<div id="form"></div>
+</div>
+<script id="script-id">
+window.onload = function(){	
+	var form = $('#form').FancyForm({
+		title: 'Login',
+		width: 295,
+		height: 200,
+		inputWidth: 180,
+		labelWidth: 65,
+		defaults: {
+			type: 'string'
+		},
+		items: [{
+			label: 'Login',
+			emptyText: 'Login',
+			allowBlank: false,
+			name: 'login'
+		},{
+			label: 'Pass',
+			emptyText: 'Pass',
+			allowBlank: false,
+			name: 'pass',
+			type: 'password'
+		},{
+			type: 'checkbox',
+			label: 'Remember',
+			name: 'remember'
+		}],
+		buttons: [{
+			text: 'Forget?',
+			handler: function(){
+				console.log('forget');
+			}
+		},{
+			text: 'Login',
+			handler: function(){
+				var values = form.get();
+				
+				console.log(values);
+			}
+		}]
+	});
+};
+</script>
+
+<div style="margin: 20px 20px 20px;width: 850px;">
+
+<pre id="pre-id" class="prettyprint linenums"></pre>
+<script src="../renderCode.js"></script>
+
+</div>
+
+</body>
+</html>

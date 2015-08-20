@@ -1,0 +1,3 @@
+<?
+echo "{success: true}";
+?>

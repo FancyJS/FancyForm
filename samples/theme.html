@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Theme - JavaScript JQuery form library </title>
+	
+	<script src="../jquery/jquery-1.11.0.min.js"></script>
+
+	<link href="../fancyform/fancyform-min.css" rel="stylesheet">
+
+	<script src="../fancyform/fancyform-min.js"></script>
+
+	<script src="../google-code-prettify/prettify.js" type="text/javascript"></script>
+	<link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
+
+<style id="style-id">
+	.mt-panel {
+		border-radius: 0px;
+	}
+
+	.mt-panel .mt-panel-header {
+		background: #5fa2dd;
+		color: #f0f0f0;
+		font-size: 16px;
+		font-weight: 400;
+		font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+		
+		border-radius: 0px;
+	}
+	
+	.mt-panel-header-text {
+		font-size: 16px;
+		font-weight: 400 !important;
+		font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+		padding-top: 12px !important;
+		padding-left: 14px !important;
+	}
+	
+	.mt-button {
+		background-color: #5fa2dd;
+		border-radius: 0;
+		font: 400 12px/16px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+		color: #f0f0f0;
+		border: 1px solid #5897CE;
+	}
+	
+	.mt-panel .mt-panel-bbar .mt-button {
+		margin-top: 7px;
+	}
+	
+	.mt-button:hover {
+		background-color: #5795cb;
+		border-color: #518bbd;
+	}
+	
+	.mt-button:active {
+		border-color: #42719a;
+		background-color: #477aa6;
+		
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+	
+	.mt-form {
+		background-color: #fff;
+		border-color: #5fa2dd;
+	}
+	
+	.mt-field .mt-field-label {
+		color: #404040;
+		font: 300 13px/17px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+	}
+	
+	.mt-field .mt-field-text-input {
+		border: 1px solid #d0d0d0;
+	}
+	
+	.mt-field .mt-field-text-input:focus {
+		border-color: #3892d4;
+	}
+	
+	.mt-textarea .mt-textarea-text-input {
+		border: 1px solid #d0d0d0;
+	}
+	
+	.mt-textarea .mt-textarea-text-input:focus {
+		border-color: #3892d4;
+	}
+	
+	.mt-combo table {
+		border: 1px solid #d0d0d0;
+	}
+	
+	.mt-combo table:hover {
+		border: 1px solid #3892d4;
+	}
+	
+	.mt-combo-list-active {
+		background: #5fa2dd;
+		border-color: #5fa2dd;
+	}
+	
+	.mt-combo-result-list {
+		border-color: #d0d0d0;
+		background: #fff;
+	}
+	
+	.mt-combo-result-list li.mt-combo-list-active {
+		background: #5fa2dd;
+		border-color: #5fa2dd;
+	}
+	
+	.mt-panel .mt-panel-bbar {
+		background-color: #fff;
+	}
+	
+	.mt-panel .mt-panel-body {
+		border-color: #5fa2dd;
+		border-left-width: 2px;
+		border-bottom-width: 2px;
+		border-right-width: 2px;
+	}
+</style>
+</head>
+<body>
+<div style="margin: 20px 20px 20px;">
+	<div id="form"></div>
+</div>
+<script id="script-id">
+window.onload = function(){
+    var comboData = [
+        {index: 0, country: 'USA'},
+        {index: 1, country: 'Canada'}
+    ];
+    
+    var form = $('#form').FancyForm({
+        title: {
+			text: 'Form',
+			height: 40
+		},
+		borders: [1,2,2,2],
+        width: 285,
+        height: 430,
+        inputWidth: 180,
+        labelWidth: 55,
+        defaults: {
+            type: 'string'
+        },
+        items: [{
+            label: 'Name',
+            emptyText: 'Name',
+            name: 'name'
+        },{
+            label: 'SurName',
+            emptyText: 'SurName',
+            name: 'surname'
+        },{
+            type: 'number',
+            label: 'Age',
+            name: 'age',
+            min: 20,
+            max: 100
+        },{
+            type: 'checkbox',
+            label: 'Married',
+            name: 'married'
+        },{
+            type: 'combo',
+            label: 'Country',
+            name: 'country',
+            data: comboData,
+            displayKey: 'country',
+            valueKey: 'index',
+            value: 0
+        },{
+            type: 'textarea',
+            inputWidth: 250,
+            height: 110,
+            emptyText: 'About',
+            label: false,
+            name: 'about'
+        }],
+        buttons: {
+			height: 44,
+			items: [{
+				text: 'Values',
+				handler: function(){
+					console.log(form.get());
+					console.log(form.get('name'));
+				}
+			},{
+				text: 'Apply',
+				handler: function(){
+					console.log('apply');
+				}
+			},{
+				text: 'Clear',
+				handler: function(){
+					console.log('clear');
+					form.clear();
+				}
+			}]
+		},
+        events: [{
+            key: function(){
+                //console.log(arguments);
+            }
+        }]
+    });
+};
+
+</script>
+
+
+<div style="margin: 20px 20px 20px;width: 850px;">
+
+<pre id="pre-id" class="prettyprint linenums"></pre>
+<script src="../renderCode.js"></script>
+
+</div>
+</body>
+</html>
