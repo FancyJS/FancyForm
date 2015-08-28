@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Captcha Form - Google ReCaptcha - JavaScript JQuery form library </title>
+	<script src="../jquery/jquery-1.11.0.min.js"></script>
+
+	<link href="../fancyform/fancyform-min.css" rel="stylesheet">
+
+	<script src="../fancyform/fancyform-min.js"></script>
+
+	<script src="../google-code-prettify/prettify.js" type="text/javascript"></script>
+	<link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div style="margin: 20px 20px 20px;">
+	<div id="form"></div>
+	
+</div>
+<script id="script-id">
+window.onload = function(){
+	
+
+	var form = $('#form').FancyForm({
+		title: 'Login',
+		width: 320,
+		height: 280,
+		inputWidth: 180,
+		labelWidth: 65,
+		defaults: {
+			type: 'string'
+		},
+		url: 'login-recaptcha.php',
+        method: 'POST',
+		items: [{
+			label: 'Login',
+			emptyText: 'Login',
+			name: 'login',
+			valid: {
+                blank: false,
+                blankText: 'Required'
+            }
+		},{
+			label: 'Pass',
+			emptyText: 'Pass',
+			name: 'pass',
+			type: 'password',
+			valid: {
+                blank: false,
+                blankText: 'Required'
+            }
+		},{
+			type: 'checkbox',
+			label: 'Remember',
+			name: 'remember'
+		},{
+			type: 'recaptcha',
+			key: '6LfW-AsTAAAAADLKwShjh3ZqjGg7UcC-2gJeK-nU'
+		}],
+		buttons: [{
+			text: 'Clear',
+			handler: function(){
+				form.clear();
+			}
+		},{
+			text: 'Submit',
+			handler: function(){
+				form.submit({
+                    success: function(result, status, xhr){
+						var result = JSON.parse(result);
+						
+						var w = FancyForm({
+							title: result.success === true? 'SUCCESS': 'ERROR',
+							width: 295,
+							height: 200,
+							items: [{
+								type: 'html',
+								value: result.success === true? 'SUCCESS': 'ERROR'
+							}],
+							buttons: [{
+								text: 'Close',
+								handler: function(){
+									w.hide();
+								}
+							}]
+						});
+						w.show();
+						form.hide();
+                    },
+                    error: function(xhr,status,error){
+                        console.log('error');
+                        console.log(arguments);
+                    }
+                });
+			}
+		}]
+	});
+};
+</script>
+
+
+<!--googleoff: index-->
+<div style="margin: 20px 20px 20px;width: 850px;">
+
+<div class="jumbotron">
+	<p class="lead">
+		<a href="www.google.com/recaptcha/">ReCaptcha</a> is Google captcha product.</br>
+		To use it you need generate public and private keys for your site <a href="www.google.com/recaptcha/admin">here</a>.</br>
+		Public key you set in <code>key</code> of field.</br>
+		Private key use on server when send to google POST request with needed params.</br>
+		On server except of all form params it is send <code>g-recaptcha-response</code></br>
+		You need to send it to google url too, as <code>response</code> property.</br>
+		More about it you can read after generate your ReCaptcha on it's page.</br>
+		Some more about returned params from google <a href="https://developers.google.com/recaptcha/docs/verify">here</a>.</br>
+		
+		When you will try sample, remember that it needs that your server support ssl.</br>
+		On local server it usually is not enabled.</br>
+		
+	</p>
+</div>
+
+<pre id="pre-id" class="prettyprint linenums"></pre>
+
+<div class="jumbotron" style="margin-top: 15px">
+	<p class="lead">
+		This sample is on php and shows all simplicity in detail.</br>
+		For ReCaptcha there are many codes on github, on php too with some better samples.
+	</p>
+</div>
+<pre class="prettyprint linenums">
+//login-recaptcha.php
+
+$response = $_POST['g-recaptcha-response'];
+
+$url = 'https://www.google.com/recaptcha/api/siteverify';
+$data = array('secret' => 'YOUR PRIVATE KEY', 'response' => $response);
+
+// use key 'http' even if you send the request to https://...
+$options = array(
+    'http' => array(
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method'  => 'POST',
+        'content' => http_build_query($data),
+    )
+);
+
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+
+echo $result;
+</pre>
+
+<script src="../renderCode.js"></script>
+
+</div>
+<!--googleon: index-->
+</body>
+</html>
