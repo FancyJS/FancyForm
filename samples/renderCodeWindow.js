@@ -1,9 +1,9 @@
 (function(){
-	Mt.get('pre-id').css('opacity', 0);
+	Fancy.get('pre-id').css('opacity', 0);
 	setTimeout(function(){
 		var textProperty,
-			el = Mt.get( 'script-id' ),
-			styleEl = Mt.get('style-id');
+			el = Fancy.get( 'script-id' ),
+			styleEl = Fancy.get('style-id');
 		
 		if( el.dom.innerText ){
 			textProperty = 'innerText';
@@ -49,7 +49,7 @@
 				"</html>\n"
 			].join('');
 
-			Mt.get('pre-id').dom[textProperty] = codeText;
+			Fancy.get('pre-id').dom[textProperty] = codeText;
 		}
 		prettyPrint();
 		$('#pre-id').fadeTo(500, 1);
