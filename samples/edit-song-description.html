@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Song Description Form - JavaScript JQuery form library </title>
+	<script src="../jquery/jquery-1.11.0.min.js"></script>
+
+	<link href="../fancyform/fancyform-min.css" rel="stylesheet">
+
+	<script src="../fancyform/fancyform-min.js"></script>
+
+	<script src="../google-code-prettify/prettify.js" type="text/javascript"></script>
+	<link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
+
+	<style>
+		.fancy-theme-my {
+		
+		}
+		
+		.fancy-theme-my .fancy-panel-header-text {
+			padding: 17px 20px 18px !important;
+		}
+		
+		.fancy-theme-my.fancy-panel {
+			-webkit-border-radius: 0px;
+			-moz-border-radius: 0px;
+			-ms-border-radius: 0px;
+			-o-border-radius: 0px;
+			border-radius: 0px;
+		}
+		
+		.fancy-theme-my .fancy-button .fancy-button-text {
+			padding: 6px 16px 7px 16px;
+			font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+			font-size: 11px;
+			font-weight: normal;
+		}
+		
+		.fancy-theme-my .fancy-field-label {
+			text-align: right;
+			color: #555;    
+			font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+			font-size: 11px;
+			font-weight: normal;
+		}
+		
+		.fancy-theme-my .fancy-panel-bbar {
+			border-top: 1px solid transparent !important;
+		}
+	</style>
+</head>
+<body>
+<div style="margin: 20px 20px 20px;">
+	<button onclick="showWindow()">Show Modal Window</button>
+</div>
+
+
+<pre class="prettyprint linenums">
+//your-style.css
+
+.fancy-theme-my {
+
+}
+
+.fancy-theme-my .fancy-panel-header-text {
+    padding: 17px 20px 18px !important;
+}
+
+.fancy-theme-my.fancy-panel {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.fancy-theme-my .fancy-button .fancy-button-text {
+    padding: 6px 16px 7px 16px;
+    font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.fancy-theme-my .fancy-field-label {
+    text-align: right;
+    color: #555;    
+    font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.fancy-theme-my .fancy-panel-bbar {
+    border-top: 1px solid transparent !important;
+}
+</pre>
+<script id="script-id">
+var genreData = [
+	{index: 0, genre: 'Rock'},
+	{index: 1, genre: 'Pop'},
+	{index: 2, genre: 'Rap &amp; Hip-Hop'},
+	{index: 3, genre: 'Easy Listening'},
+	{index: 4, genre: 'Dance &amp; House'},
+	{index: 5, genre: 'Instrumental'},
+	{index: 6, genre: 'Metal'},
+	{index: 7, genre: 'Alternative'},
+	{index: 8, genre: 'Dubstep'},
+	{index: 9, genre: 'Jazz &amp; Blues'},
+	{index: 10, genre: 'Drum &amp; Bass'},
+	{index: 11, genre: 'Trance'},
+	{index: 12, genre: 'Chanson'},
+	{index: 13, genre: 'Ethnic'},
+	{index: 14, genre: 'Acoustic &amp; Vocal'},
+	{index: 15, genre: 'Reggae'},
+	{index: 16, genre: 'Classical'},
+	{index: 17, genre: 'Indie Pop'},
+	{index: 18, genre: 'Other'},
+	{index: 19, genre: 'Speech'},
+	{index: 20, genre: 'Electropop &amp; Disco'}	
+];
+
+var w = FancyForm({
+	theme: 'my',
+	title: {
+		text: 'Edit audio file',
+		height: 48
+	},
+	tools: [{
+		text: 'Close',
+		handler: function(){
+			w.hide();
+		}
+	}],
+	width: 440,
+	height: 500,
+	inputWidth: 300,
+	labelWidth: 90,
+	defaults: {
+		type: 'string'
+	},
+	items: [{
+		label: 'Artist',
+		name: 'artist',
+		value: 'Coldplay'
+	},{
+		label: 'Title',
+		name: 'title',
+		value: 'A Sky Full Of Stars'
+	},{
+		label: 'Genre',
+		type: 'combo',
+		name: 'genre',
+		data: genreData,
+		displayKey: 'genre',
+		valueKey: 'index',
+		value: 1
+	},{
+		label: 'Lyrics',
+		name: 'lyrics',
+		type: 'textarea',
+		autoHeight: true,
+		value: [
+			"A Sky Full Of Stars\n\n",
+			
+			"'Cause you're a sky, 'cause you're a sky full of stars\n",
+			"I'm gonna give you my heart\n",
+			"'Cause you're a sky, 'cause you're a sky full of stars\n",
+			"'Cause you light up the path\n\n",
+
+			"I don't care, go on and tear me apart\n",
+			"I don't care if you do, ooh\n",
+			"'Cause in a sky, 'cause in a sky full of stars\n",
+			"I think I saw you\n\n",
+
+			"'Cause you're a sky, 'cause you're a sky full of stars\n",
+			"I wanna die in your arms\n",
+			"'Cause you get lighter the more it gets dark\n",
+			"I'm gonna give you my heart\n\n",
+
+			"I don't care, go on and tear me apart\n",
+			"I don't care if you do, ooh\n",
+			"'Cause in a sky, 'cause in a sky full of stars\n",
+			"I think I see you\n",
+			"I think I see you\n\n",
+
+			"'Cause you're a sky, you're a sky full of stars\n",
+			"Such a heavenly view\n",
+			"You're such a heavenly view\n"
+		].join("")
+	},{
+		type: 'checkbox',
+		inputLabel: 'Do not show in search results',
+		name: 'remember'
+	}],
+	buttons: {
+		height: 44,
+		items: [{
+			text: 'Save',
+			width: 54,
+			handler: function(){
+				var values = w.get();
+				
+				console.log(values);
+			}
+		}]
+	}
+});
+
+w.show();
+
+function showWindow(){
+	w.show();
+}
+
+</script>
+
+
+<!--googleoff: index-->
+<div style="margin: 20px 20px 20px;width: 850px;">
+
+<pre id="pre-id" class="prettyprint linenums"></pre>
+<script src="../renderCode.js"></script>
+
+</div>
+<!--googleon: index-->
+</body>
+</html>
