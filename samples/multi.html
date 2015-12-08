@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Multi Part Forms (Tabs) - JavaScript JQuery form library </title>
+	<script src="../jquery/jquery-1.11.0.min.js"></script>
+
+	<link href="../fancyform/fancyform-min.css" rel="stylesheet">
+
+	<script src="../fancyform/fancyform-min.js"></script>
+
+	<script src="../google-code-prettify/prettify.js" type="text/javascript"></script>
+	<link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
+	
+</head>
+<body>
+	<!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/samples.html">Samples</a>
+        </div>
+        
+      </div>
+    </nav>
+<div style="margin: 20px 20px 20px;">
+	<div id="form"></div>
+</div>
+
+<script id="script-id">
+window.onload = function(){
+	$('#form').FancyForm({
+		title: 'Multi forms',
+		theme: 'blue',
+		width: 285,
+		height: 300,
+		activeTab: 0,
+		items: [{
+			type: 'tab',
+			defaults: {
+                inputWidth: 180,
+				labelWidth: 55,
+            },
+			items: [{
+				type: 'string',
+				label: 'Name',
+				emptyText: 'Name',
+				name: 'name'
+			},{
+				type: 'string',
+				label: 'SurName',
+				emptyText: 'SurName',
+				name: 'surname'
+			},{
+				type: 'password',
+				label: 'Pass',
+				emptyText: 'Pass',
+				name: 'pass'
+			}]
+		},{
+			type: 'tab',
+			defaults: {
+                inputWidth: 180,
+				labelWidth: 55,
+            },
+			items: [{
+				type: 'number',
+				label: 'Age',
+				name: 'age',
+				min: 20,
+				max: 100
+			},{
+				type: 'checkbox',
+				label: 'Married',
+				name: 'married'
+			}]
+		},{
+			type: 'tab',
+			defaults: {
+                inputWidth: 180,
+				labelWidth: 55,
+            },
+			items: [{
+				type: 'combo',
+				label: 'Country',
+				name: 'country',
+				data: [
+					{index: 0, country: 'USA'},
+					{index: 1, country: 'Canada'}
+				],
+				displayKey: 'country',
+				valueKey: 'index',
+				value: 0
+			},{
+				type: 'textarea',
+				inputWidth: 250,
+				height: 110,
+				emptyText: 'About',
+				label: false,
+				name: 'about'
+			}]
+		}],
+		buttons: [{
+			text: 'Prev',
+			disabled: true,
+			handler: function(button){
+				this.prevTab();
+				if( this.activeTab === 0 ){
+					button.disable();
+				}
+				this.buttons[1].enable();
+			}
+		},{
+			text: 'Next',
+			handler: function(button){
+				this.nextTab();
+				if( this.activeTab === 2 ){
+					button.disable();
+				}
+				this.buttons[0].enable();
+			}
+		}]
+	});
+};
+</script>
+
+<!--googleoff: index-->
+<div style="margin: 20px 20px 20px;width: 850px;">
+
+<pre id="pre-id" class="prettyprint linenums"></pre>
+<script src="../renderCode.js"></script>
+
+</div>
+<!--googleon: index-->
+</body>
+</html>
