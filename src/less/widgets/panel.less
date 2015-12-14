@@ -1,0 +1,90 @@
+.fancy-panel-shadow {
+    .box-shadow( 0 0px 3px rgba(0, 0, 0, 0.15) );
+}
+    
+.fancy-panel {
+/*
+	border: 1px solid rgb(211, 219, 225);
+	*/
+	overflow: hidden;
+	font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+	font-size: 11px;
+	.border-radius(3px 3px 0px 0px);
+
+    .fancy-panel-header {
+    	color: #FFFFFF;
+    	height: 30px;
+    	text-decoration: none;
+    	cursor: default;
+    	font-size: 13px;
+    	background: #5780ab;
+    	border: 1px solid transparent;
+    }
+
+    .fancy-panel-header-text {
+    	font-weight: bold;
+    	padding-left: 10px;
+    	padding-top: 7px;
+    	border-top: 1px solid transparent;
+    }
+
+    .fancy-panel-body {
+    	background-color: #F7F7F7;
+    	border: 1px solid #adbac7;
+    	background-color: white;
+    	overflow: hidden;
+    }
+    
+    .fancy-panel-bbar {
+        //padding-top: 7px;
+        padding-right: 3px;
+        border-top: 1px solid #D9E0E7;
+        height: 30px;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        background-color: #F7F7F7;
+        
+        .fancy-button {
+            margin-right: 10px; 
+            float: right;   
+            margin-top: 4px;
+        }
+    }
+}
+
+.fancy-panel-header-tools {
+	position: absolute;
+	right: 0px; top: 0px;
+}
+
+.fancy-tool-button {
+	float: left;
+	padding-top: 17px;
+	padding-right: 10px;
+	color: #C7D7E9;
+	-webkit-transition: color 100ms linear;
+	-moz-transition: color 100ms linear;
+	-o-transition: color 100ms linear;
+	transition: color 100ms linear;
+	font-family: tahoma, arial, verdana, sans-serif, 'Lucida Sans';
+	font-size: 11px;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+.fancy-tool-button:hover {
+	color: #FFF;
+}
+
+.fancy-modal {
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px; 
+    left: 0px;
+    background: #000;
+    opacity: 0.2;
+}

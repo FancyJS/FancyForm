@@ -1,0 +1,22 @@
+.fancy-field-checkbox-input {
+    float: left;
+    width: 15px;
+    height: 14px !important;
+    margin: 7px 0px 0px 0px;
+    margin-right: 5px;
+    margin-bottom: 2px;
+    background: url(images/check.gif) 0px 0px no-repeat;
+    cursor: pointer;
+    &:hover {
+        background-position: 0px -28px; 
+    }
+}
+
+.fancy-checkbox-on {
+    .fancy-field-checkbox-input {
+        background-position: 0px -14px;
+        &:hover {
+            background-position: 0px -42px;
+        }
+    }
+}
