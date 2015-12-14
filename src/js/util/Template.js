@@ -4,35 +4,35 @@
  * @param {Array} html
  */
 Fancy.Template = function(html){
-	var me = this;
-	
+  var me = this;
+
   me.tpl = html.join('');
-	me.compile();
+  me.compile();
 };
 
 Fancy.Template.prototype = {
-	re: /\{([\w\-]+)\}/g,
+  re: /\{([\w\-]+)\}/g,
   /*
    * @param {Array} values
    */
-	getHTML: function(values){
-		var me = this;
-		
-		return me.compiled(values);
-	},
+  getHTML: function(values){
+    var me = this;
+
+    return me.compiled(values);
+  },
   /*
    * @returns {Fancy.Template}
    */
-	compile: function(){
+  compile: function(){
     var me = this,
-			sep = "+";
-		
+      sep = "+";
+
       function fn(m, name){
         name = "values['" + name + "']";
         return "'+(" + name + " === undefined ? '' : " + name + ")+'";
       }
-		
-		eval("me.compiled = function(values){ return '" + me.tpl.replace(me.re, fn) + "';};");
+
+    eval("me.compiled = function(values){ return '" + me.tpl.replace(me.re, fn) + "';};");
     return me;
   }
 };

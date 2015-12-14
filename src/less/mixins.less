@@ -10,12 +10,12 @@
 
 // Opacity
 .opacity(@opacity){
-	@_opacity: @opacity * 100;
-	opacity: @opacity;
-	//IE8
-	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{_opacity})";
-	//IE5-7
-	filter: ~"alpha(opacity=@{_opacity})";
+  @_opacity: @opacity * 100;
+  opacity: @opacity;
+  //IE8
+  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{_opacity})";
+  //IE5-7
+  filter: ~"alpha(opacity=@{_opacity})";
 }
 
 .border-radius(@radius) {
@@ -45,7 +45,7 @@
 // Drop shadows
 .box-shadow(@shadow){
     -webkit-box-shadow: @shadow;// iOS <4.3 & Android <4.1
- 	   -moz-box-shadow: @shadow;
+      -moz-box-shadow: @shadow;
             box-shadow: @shadow;
 }
 
@@ -58,8 +58,8 @@
 // Transitions
 .transition(@transition){
     -webkit-transition: @transition;
-	   -moz-transition: @transition;
-		-ms-transition: @transition;
-		 -o-transition: @transition;
-		    transition: @transition;
+     -moz-transition: @transition;
+    -ms-transition: @transition;
+     -o-transition: @transition;
+        transition: @transition;
 }

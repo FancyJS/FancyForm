@@ -8,12 +8,12 @@
  * @singleton
  */
 var Fancy = {
-	global: this,
+  global: this,
   /**
    * The version of the framework
    * @type String
    */
-	version: '0.2.3'
+  version: '0.2.3'
 };
 
 /**
@@ -23,9 +23,9 @@ var Fancy = {
  * @param {Object} from The primary source of the properties.
  */
 Fancy.apply = function(to, from){
-	for(var p in from){
-		to[p] = from[p];
-	}
+  for(var p in from){
+    to[p] = from[p];
+  }
 };
 
 /**
@@ -35,11 +35,11 @@ Fancy.apply = function(to, from){
  * @param {Object} from The primary source of the properties.
  */
 Fancy.applyIf = function(to, from){
-	for(var p in from){
-		if( to[p] === undefined ){
-			to[p] = from[p];
-		}
-	}
+  for(var p in from){
+    if( to[p] === undefined ){
+      to[p] = from[p];
+    }
+  }
 };
 
 /**
@@ -50,23 +50,23 @@ Fancy.applyIf = function(to, from){
  * @param {String} etc
  */
 Fancy.namespace = function(){
-	var i = 0,
-		iL = arguments.length;
-	
-	for(;i<iL;i++){
-		var value = arguments[i],
-			parts = value.split("."),
-			j = 1,
-			jL = parts.length;
-		
-		Fancy.global[parts[0]] = Fancy.global[parts[0]] || {};
-		var namespace = Fancy.global[parts[0]];
-		
-		for(;j<jL;j++){
-			namespace[parts[j]] = namespace[parts[j]] || {};
-			namespace = namespace[parts[j]];
-		}
-	}
+  var i = 0,
+    iL = arguments.length;
+  
+  for(;i<iL;i++){
+    var value = arguments[i],
+      parts = value.split("."),
+      j = 1,
+      jL = parts.length;
+    
+    Fancy.global[parts[0]] = Fancy.global[parts[0]] || {};
+    var namespace = Fancy.global[parts[0]];
+    
+    for(;j<jL;j++){
+      namespace[parts[j]] = namespace[parts[j]] || {};
+      namespace = namespace[parts[j]];
+    }
+  }
 };
 
 /**
@@ -95,38 +95,38 @@ Fancy.ns = Fancy.namespace;
  * @return {String}
  */
 Fancy.typeOf = function(value){
-	if(value === null) {
+  if(value === null) {
     return 'null';
-	}
+  }
 
-	var type = typeof value;
-	if(type === 'undefined' || type === 'string' || type === 'number' || type === 'boolean') {
-		return type;
-	}
+  var type = typeof value;
+  if(type === 'undefined' || type === 'string' || type === 'number' || type === 'boolean') {
+    return type;
+  }
 
-	var toString = Object.prototype.toString,
-		typeToString = toString.call(value);
+  var toString = Object.prototype.toString,
+    typeToString = toString.call(value);
 
-	switch(typeToString){
-		case '[object Array]':
-			return 'array';
-		case '[object Date]':
-			return 'date';
-		case '[object Boolean]':
-			return 'boolean';
-		case '[object Number]':
-			return 'number';
-		case '[object RegExp]':
-			return 'regexp';
-	}
+  switch(typeToString){
+    case '[object Array]':
+      return 'array';
+    case '[object Date]':
+      return 'date';
+    case '[object Boolean]':
+      return 'boolean';
+    case '[object Number]':
+      return 'number';
+    case '[object RegExp]':
+      return 'regexp';
+  }
 
-	if(type === 'function'){
-		return 'function';
-	}
+  if(type === 'function'){
+    return 'function';
+  }
 
-	if(type === 'object'){
-		return 'object';
-	}
+  if(type === 'object'){
+    return 'object';
+  }
 };
 
 /**
@@ -135,8 +135,8 @@ Fancy.typeOf = function(value){
  * @return {Boolean}
  */
 Fancy.isArray = ('isArray' in Array) ? Array.isArray : function(value){
-	var toString = Object.prototype.toString;
-	
+  var toString = Object.prototype.toString;
+  
   return toString.call(value) === '[object Array]';
 };
 
@@ -146,9 +146,9 @@ Fancy.isArray = ('isArray' in Array) ? Array.isArray : function(value){
  * @return {Boolean}
  */
 Fancy.isObject = function(value){
-	var toString = Object.prototype.toString;
-	
-	return toString.call(value) === '[object Object]';
+  var toString = Object.prototype.toString;
+  
+  return toString.call(value) === '[object Object]';
 };
 
 /**
@@ -157,8 +157,8 @@ Fancy.isObject = function(value){
  * @return {Boolean}
  */
 Fancy.isFunction = function(value){
-	var toString = Object.prototype.toString;
-	
+  var toString = Object.prototype.toString;
+  
   return toString.apply(value) === '[object Function]';
 };
 
@@ -197,23 +197,23 @@ Fancy.isBoolean = function(value){
  * @return See description for the fn parameter.
  */
 Fancy.each = function(arrayObject, fn){
-	var type = Fancy.typeOf(arrayObject);
+  var type = Fancy.typeOf(arrayObject);
 
-	switch(type){
-		case 'array':
-			var i = 0,
-				iL = arrayObject.length;
+  switch(type){
+    case 'array':
+      var i = 0,
+        iL = arrayObject.length;
 
-			for(;i<iL;i++){
-				fn(arrayObject[i], i, arrayObject);
-			}
-			break;
-		case 'object':
-			for(var p in arrayObject){
-				fn(arrayObject[p], p, arrayObject);
-			}
-			break;
-	}
+      for(;i<iL;i++){
+        fn(arrayObject[i], i, arrayObject);
+      }
+      break;
+    case 'object':
+      for(var p in arrayObject){
+        fn(arrayObject[p], p, arrayObject);
+      }
+      break;
+  }
 };
 
 /**
@@ -227,43 +227,43 @@ Fancy.each = function(arrayObject, fn){
  * @return See description for the fn parameter.
  */
 Fancy.trait = function(proto, traits){
-	if( traits.classes ){
-		var i = 0,
-			classes = traits.classes,
-			iL = classes.length;
-		
-		if( Fancy.typeOf( traits.classes[0] ) === 'object' ){
-			for(;i<iL;i++){
-				var item = classes[i],
-					_class = item._class,
-					methods = item.methods,
-					j = 0,
-					jL = methods.length;
-					
-				for(;j<jL;j++){
-					var methodName = methods[j];
-					proto[methodName] = _class['prototype'][methodName];
-				}
-			}
-		}
-		else{
-			for(;i<iL;i++){
-				Fancy.apply(proto, classes[i]['prototype']);
-			}
-		}
-	}
+  if( traits.classes ){
+    var i = 0,
+      classes = traits.classes,
+      iL = classes.length;
+    
+    if( Fancy.typeOf( traits.classes[0] ) === 'object' ){
+      for(;i<iL;i++){
+        var item = classes[i],
+          _class = item._class,
+          methods = item.methods,
+          j = 0,
+          jL = methods.length;
+          
+        for(;j<jL;j++){
+          var methodName = methods[j];
+          proto[methodName] = _class['prototype'][methodName];
+        }
+      }
+    }
+    else{
+      for(;i<iL;i++){
+        Fancy.apply(proto, classes[i]['prototype']);
+      }
+    }
+  }
 
-	if( traits.methods ){
-		var i = 0,
-			methods = traits.methods,
-			iL = methods.length,
-			methodObject;
-		
-		for(;i<iL;i++){
-			methodObject = methods[i];
-			proto[methodObject.name] = methodObject.method;
-		}
-	}
+  if( traits.methods ){
+    var i = 0,
+      methods = traits.methods,
+      iL = methods.length,
+      methodObject;
+    
+    for(;i<iL;i++){
+      methodObject = methods[i];
+      proto[methodObject.name] = methodObject.method;
+    }
+  }
 };
 
 /**
@@ -275,49 +275,49 @@ Fancy.trait = function(proto, traits){
  * @return {Object}
  */
 Fancy.applyConfig = function(object, config){
-	var property,
-		config = config || {};
-	
-	if(object._isConfigApplied === true){
-		return object;
-	}
-	
-  for(property in config){
-		object[property] = config[property];
+  var property,
+    config = config || {};
+  
+  if(object._isConfigApplied === true){
+    return object;
   }
-	object._isConfigApplied = true;
-	
+  
+  for(property in config){
+    object[property] = config[property];
+  }
+  object._isConfigApplied = true;
+  
   return object;
 };
 
 Fancy.apply(Fancy, {
-	prefix: 'fancy-gen',
-	idSeed: 0,
-	zIndex: 1,
-	id: function(el, prefix){
-		if(!el){
-			return (prefix || Fancy.prefix) + (++Fancy.idSeed);
-		}
-		el = el.dom || {};
-		if(!el.id){
-			el.id = (prefix || Fancy.prefix) + (++Fancy.idSeed);
-		}
-		return el.id;
-	}
+  prefix: 'fancy-gen',
+  idSeed: 0,
+  zIndex: 1,
+  id: function(el, prefix){
+    if(!el){
+      return (prefix || Fancy.prefix) + (++Fancy.idSeed);
+    }
+    el = el.dom || {};
+    if(!el.id){
+      el.id = (prefix || Fancy.prefix) + (++Fancy.idSeed);
+    }
+    return el.id;
+  }
 });
 
 (function(){
 
 var userAgent = navigator.userAgent.toLowerCase(),
-	check = function(regex){
-		return regex.test(userAgent);
-	},
-	isOpera = check(/opera/),
-	isIE = !isOpera && check(/msie/);
+  check = function(regex){
+    return regex.test(userAgent);
+  },
+  isOpera = check(/opera/),
+  isIE = !isOpera && check(/msie/);
 
 Fancy.apply(Fancy, {
-	isOpera: isOpera,
-	isIE: isIE
+  isOpera: isOpera,
+  isIE: isIE
 });
 
 /**
@@ -325,18 +325,18 @@ Fancy.apply(Fancy, {
  * @returns {Array}
  */
 Fancy.getViewSize = function(){
-	var xy = [];
-	
-	if(Fancy.isIE){
-		xy[0] = document.documentElement.clientWidth;
-		xy[1] = document.documentElement.clientHeight;
-	}
-	else{
-		xy[0] = window.innerHeight;
-		xy[1] = window.innerWidth;
-	}
-	
-	return xy;
+  var xy = [];
+  
+  if(Fancy.isIE){
+    xy[0] = document.documentElement.clientWidth;
+    xy[1] = document.documentElement.clientHeight;
+  }
+  else{
+    xy[0] = window.innerHeight;
+    xy[1] = window.innerWidth;
+  }
+  
+  return xy;
 };
 
 })();
