@@ -430,6 +430,20 @@ Fancy.Class('Fancy.Form', {
       return values;
     }
   },
+  set: function(name, value){
+    var me = this;
+
+    if( name ){
+      Fancy.each(me.items, function(item){
+        if( item.name !== name ){
+          return;
+        }
+        
+        item.set(value);
+      });
+      return value;
+    }
+  },
   clear: function(clear){
     var me = this;
 

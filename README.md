@@ -1,6 +1,6 @@
 # FancyForm
 
-Build v0.2.3  
+Build v0.2.4  
 
 For more info on using Fancy Form, see the docs: http://www.fancyjs.com/docs.html
 
