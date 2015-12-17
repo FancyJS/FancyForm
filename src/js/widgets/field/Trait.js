@@ -46,6 +46,14 @@ Fancy.form.field.Trait.prototype = {
       itemsHTML = me.itemsHTML;
     }
 
+    if( me.labelAlign === 'top' ){
+      //auto fixing of wrang labelWidth.
+      //will not fix right if user change color of label font-size to bigger
+      if( me.labelWidth < me.label.length * 7 ){
+        me.labelWidth = (me.label.length + 2) * 7;
+      }
+    }
+
     if( me.labelWidth ){
       labelWidth = 'width:' + me.labelWidth + 'px;';
     }
