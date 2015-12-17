@@ -382,6 +382,9 @@ td {
 .fancy-field-set legend {
   padding: 5px 5px 5px 5px;
   line-height: 20px;
+  border-width: 0px;
+  margin-bottom: 0px;
+  width: auto;
 }
 .fancy-field-set-label {
   font: 400 16px/20px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
