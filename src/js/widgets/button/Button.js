@@ -1,5 +1,5 @@
 /**
- * @class Fancy.Widget
+ * @class Fancy.Button
  * @extends Fancy.Event
  */
 Fancy.Class('Fancy.Button', {

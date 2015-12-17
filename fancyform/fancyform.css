@@ -164,9 +164,6 @@ td {
   box-shadow: 0 0px 3px rgba(0, 0, 0, 0.15);
 }
 .fancy-panel {
-  /*
-  border: 1px solid rgb(211, 219, 225);
-  */
   overflow: hidden;
   font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
   font-size: 11px;
@@ -211,6 +208,29 @@ td {
   margin-right: 10px;
   float: right;
   margin-top: 4px;
+}
+.fancy-panel .fancy-panel-tbar {
+  padding-right: 3px;
+  border-bottom: 1px solid #D9E0E7;
+  height: 30px;
+  width: 100%;
+  background-color: #F7F7F7;
+}
+.fancy-panel .fancy-panel-tbar .fancy-button {
+  margin-right: 10px;
+  float: right;
+  margin-top: 4px;
+}
+.fancy-panel .fancy-panel-tbar .fancy-toolbar-tab {
+  float: left;
+  margin-right: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  margin-left: 4px;
+  margin-top: 9px;
 }
 .fancy-panel-header-tools {
   position: absolute;
@@ -442,6 +462,9 @@ td {
 .fancy-theme-blue .fancy-form {
   background-color: #F0F2F4;
 }
+.fancy-theme-blue .fancy-panel-tbar {
+  background-color: #F0F2F4 !important;
+}
 .fancy-theme-blue .fancy-panel-bbar {
   background-color: #F0F2F4 !important;
 }
@@ -507,6 +530,9 @@ td {
 .fancy-theme-light-blue .fancy-panel-bbar .fancy-button {
   margin-top: 7px;
 }
+.fancy-theme-light-blue .fancy-panel-tbar .fancy-toolbar-tab {
+  margin-top: 14px;
+}
 .fancy-theme-light-blue .fancy-button:hover {
   background-color: #5795cb;
   border-color: #518bbd;
@@ -517,6 +543,15 @@ td {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+.fancy-theme-light-blue .fancy-button-disabled {
+  background-color: white;
+  border-color: white;
+  color: #5fa2dd;
+}
+.fancy-theme-light-blue .fancy-button-disabled:hover {
+  background-color: white;
+  border-color: white;
 }
 .fancy-theme-light-blue .fancy-form {
   background-color: #fff;
@@ -562,6 +597,9 @@ td {
   padding: 7px 0px 7px 10px;
 }
 .fancy-theme-light-blue .fancy-panel-bbar {
+  background-color: #ececec;
+}
+.fancy-theme-light-blue .fancy-panel-tbar {
   background-color: #ececec;
 }
 .fancy-theme-light-blue .fancy-panel-body {

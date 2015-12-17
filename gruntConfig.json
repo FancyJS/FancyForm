@@ -31,29 +31,31 @@
   },{
 	"path": "./src/js/widgets/Widget.js"
   },{
-	"path": "./src/js/widgets/button/Button.js"
+    "path": "./src/js/widgets/button/Button.js"
   },{
-	"path": "./src/js/widgets/panel/Panel.js"
+    "path": "./src/js/widgets/tab/Tab.js"
   },{
-	"path": "./src/js/widgets/Form/Form.js"
+    "path": "./src/js/widgets/panel/Panel.js"
   },{
-	"path": "./src/js/widgets/field/Trait.js"
+    "path": "./src/js/widgets/Form/Form.js"
   },{
-	"path": "./src/js/widgets/field/String.js"
+    "path": "./src/js/widgets/field/Trait.js"
   },{
-	"path": "./src/js/widgets/field/Number.js"
+    "path": "./src/js/widgets/field/String.js"
   },{
-	"path": "./src/js/widgets/field/TextArea.js"
+    "path": "./src/js/widgets/field/Number.js"
   },{
-	"path": "./src/js/widgets/field/CheckBox.js"
+    "path": "./src/js/widgets/field/TextArea.js"
   },{
-	"path": "./src/js/widgets/field/Combo.js"
+    "path": "./src/js/widgets/field/CheckBox.js"
   },{
-	"path": "./src/js/widgets/field/Line.js"
+    "path": "./src/js/widgets/field/Combo.js"
   },{
-	"path": "./src/js/widgets/field/Set.js"
+    "path": "./src/js/widgets/field/Line.js"
   },{
-	"path": "./src/js/widgets/field/Tab.js"
+    "path": "./src/js/widgets/field/Set.js"
+  },{
+    "path": "./src/js/widgets/field/Tab.js"
   },{
     "path": "./src/js/widgets/field/HTML.js"
   },{

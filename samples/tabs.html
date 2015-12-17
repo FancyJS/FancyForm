@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tabs - JavaScript JQuery form library </title>
+	
+	<script src="../thirdparty/jquery/jquery-1.11.0.min.js"></script>
+
+	<link href="../fancyform/fancyform.min.css" rel="stylesheet">
+
+	<script src="../fancyform/fancyform.min.js"></script>
+
+	<script src="../thirdparty/google-code-prettify/prettify.js" type="text/javascript"></script>
+	<link href="../thirdparty/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div style="margin: 20px 20px 20px;">
+	<div id="form"></div>
+</div>
+
+<script id="script-id">
+window.onload = function(){
+	$('#form').FancyForm({
+		title: 'Tabs',
+		theme: 'blue',
+		width: 285,
+		height: 300,
+		activeTab: 0,
+		url: 'submit.php',
+		tabs: ['First', 'Second', 'Third'],
+		buttons: [{
+			text: 'Submit',
+            handler: function(){
+                console.log('Submit');
+            }
+		}],
+		items: [{
+			type: 'tab',
+			defaults: {
+                inputWidth: 180,
+				labelWidth: 55,
+            },
+			items: [{
+				type: 'string',
+				label: 'Name',
+				emptyText: 'Name',
+				name: 'name'
+			},{
+				type: 'string',
+				label: 'SurName',
+				emptyText: 'SurName',
+				name: 'surname'
+			},{
+				type: 'password',
+				label: 'Pass',
+				emptyText: 'Pass',
+				name: 'pass'
+			}]
+		},{
+			type: 'tab',
+			defaults: {
+                inputWidth: 180,
+				labelWidth: 55,
+            },
+			items: [{
+				type: 'number',
+				label: 'Age',
+				name: 'age',
+				min: 20,
+				max: 100
+			},{
+				type: 'checkbox',
+				label: 'Married',
+				name: 'married'
+			}]
+		},{
+			type: 'tab',
+			defaults: {
+                inputWidth: 180,
+				labelWidth: 55,
+            },
+			items: [{
+				type: 'combo',
+				label: 'Country',
+				name: 'country',
+				data: [
+					{index: 0, country: 'USA'},
+					{index: 1, country: 'Canada'}
+				],
+				displayKey: 'country',
+				valueKey: 'index',
+				value: 0
+			},{
+				type: 'textarea',
+				inputWidth: 250,
+				height: 110,
+				emptyText: 'About',
+				label: false,
+				name: 'about'
+			}]
+		}]
+	});
+};
+</script>
+
+<!--googleoff: index-->
+<div style="margin: 20px 20px 20px;width: 850px;">
+
+<pre id="pre-id" class="prettyprint linenums"></pre>
+<script src="../renderCode.js"></script>
+
+</div>
+<!--googleon: index-->
+</body>
+</html>

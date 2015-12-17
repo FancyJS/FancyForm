@@ -13,7 +13,7 @@ var Fancy = {
    * The version of the framework
    * @type String
    */
-  version: '0.2.4'
+  version: '0.2.5'
 };
 
 /**
@@ -1452,7 +1452,7 @@ Fancy.Class('Fancy.Widget', {
   }
 });
 /**
- * @class Fancy.Widget
+ * @class Fancy.Button
  * @extends Fancy.Event
  */
 Fancy.Class('Fancy.Button', {
@@ -1577,6 +1577,31 @@ Fancy.Class('Fancy.Button', {
     me.el.removeClass('fancy-button-disabled');
   }
 });
+/**
+ * @class Fancy.toolbar.Tab
+ * @extends Fancy.Button
+ */
+Fancy.Class('Fancy.toolbar.Tab', {
+  extend: Fancy.Button,
+  constructor: function(config, scope){
+    var me = this;
+
+    me.scope = scope;
+
+    me.Super('const', arguments);
+  },
+  init: function(){
+    var me = this;
+  
+    me.Super('init', arguments);
+  },
+  cls: 'fancy fancy-button fancy-toolbar-tab',
+  render: function(){
+    var me = this;
+
+    me.Super('render', arguments);
+  }
+});
 Fancy.Class('Fancy.Panel', {
   extend: Fancy.Widget,
   constructor: function(){
@@ -1699,7 +1724,7 @@ Fancy.Class('Fancy.Form', {
 
     config = me.prepareConfig(config);
 
-    var  titleHeight = config.titleHeight || 30,
+    var titleHeight = config.titleHeight || 30,
       titleBorders = config.titleBorders || [1,1,1,1],
       buttonBarHeight = config.buttonsBarHeight || 37,
       buttonBarBorders = config.buttonBarBorders || [1,0,0,0],
@@ -1724,6 +1749,7 @@ Fancy.Class('Fancy.Form', {
       width: config.width,
       height: config.height,
       buttons: config.buttons,
+      tabs: config.tabs,
       buttonBarHeight: buttonBarHeight,
       titleHeight: titleHeight,
       style: style,
@@ -1805,7 +1831,7 @@ Fancy.Class('Fancy.Form', {
         o.buttonsBarBorders = buttons.borders;
       }
     }
-
+    
     return o;
   },
   init: function(){
@@ -1850,6 +1876,8 @@ Fancy.Class('Fancy.Form', {
   labelWidth: 65,
   inputWidth: 100,
   tpl: [
+    '<div class="fancy-panel-tbar" style="{isTBar}{buttonBarHeight}">',
+    '</div>',
     '<div class="fancy-form-body">',
     '</div>',
     '<div class="fancy-panel-bbar" style="{isBBar}{buttonBarHeight}">',
@@ -1859,10 +1887,15 @@ Fancy.Class('Fancy.Form', {
     var me = this,
       renderTo = me.renderTo || document.body,
       el = document.createElement('div'),
+      isTBar = 'display: none;',
       isBBar = 'display: none;',
       buttonBarHeight = me.buttonBarHeight,
       titleHeight = me.titleHeight;
 
+    if( me.tabs ){
+      isTBar = '';
+    }  
+      
     if( me.buttons ){
       isBBar = '';
     }
@@ -1887,6 +1920,7 @@ Fancy.Class('Fancy.Form', {
     el.style.height = me.height + 'px';
 
     el.innerHTML = me.tpl.getHTML({
+      isTBar: isTBar,
       isBBar: isBBar,
       buttonBarHeight: 'height:'+buttonBarHeight+'px'
     });
@@ -1895,6 +1929,48 @@ Fancy.Class('Fancy.Form', {
     me.renderItems(me.el.getByClass('fancy-form-body'));
     me.setActiveTab();
 
+    if( me.tabs ){
+      //var i = me.tabs.length;
+      var i = 0,
+        iL = me.tabs.length;
+      
+      for(;i<iL;i++){
+        var tabConfig = {};
+        
+        if( Fancy.isString(me.tabs[i]) ){
+          tabConfig.text = me.tabs[i];
+        }
+        else{
+          tabConfig = me.tabs[i];
+        }
+        
+        tabConfig.renderTo = me.el.getByClass('fancy-panel-tbar');
+        me.tabs[i] = tabConfig;
+        //if( me.activeTab !== Math.abs(i - (me.tabs.length - 1)) ){
+        if( me.activeTab !== i ){
+          me.tabs[i].disabled = true;
+        }
+        
+        if( me.tabs[i].handler === undefined ){
+          me.tabs[i].handler = (function(i){
+            return function(){
+              me.setActiveTab(i);
+              var _i = 0,
+                _iL = me.tabs.length;
+              
+              for(;_i<_iL;_i++){
+                me.tabs[_i].disable();
+              }
+              
+              me.tabs[i].enable();
+            }
+          })(i);
+        }
+        
+        me.tabs[i] = new Fancy.toolbar.Tab(me.tabs[i], me);
+      }
+    }
+    
     if( me.buttons ){
       var i = me.buttons.length;
       while(i--){
@@ -2025,10 +2101,14 @@ Fancy.Class('Fancy.Form', {
       _i += item.items.length;
     }
   },
-  setActiveTab: function(){
+  setActiveTab: function(newActiveTab){
     var me = this,
       tabs = me.el.select('.fancy-field-tab'),
       oldActiveTab = me.el.select('.fancy-field-tab-active');
+    
+    if( newActiveTab !== undefined ){
+      me.activeTab = newActiveTab;
+    }
     
     if( me.activeTab === undefined ){
       return;
