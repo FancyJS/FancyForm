@@ -105,7 +105,8 @@ Fancy.Class(['Fancy.form.field.Combo', 'Fancy.Combo'], {
           display: '',
           left: xy[0] + 'px',
           top: xy[1] + 'px',
-          width: el.css('width')
+          width: el.css('width'),
+          "z-index": 2000 + Fancy.zIndex++
         });
         hideCombos(me.id);
       }

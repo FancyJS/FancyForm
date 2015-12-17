@@ -2242,7 +2242,7 @@ Fancy.Class('Fancy.Form', {
       left: (xy[0] + scrollLeft) + 'px',
       top: (xy[1] + scrollTop) + 'px',
       display: '',
-      "z-index": 1000 + Fancy.zIndex
+      "z-index": 1000 + Fancy.zIndex++
     });
 
     Fancy.select('.fancy-modal').css('display', '');
@@ -3206,7 +3206,8 @@ Fancy.Class(['Fancy.form.field.Combo', 'Fancy.Combo'], {
           display: '',
           left: xy[0] + 'px',
           top: xy[1] + 'px',
-          width: el.css('width')
+          width: el.css('width'),
+          "z-index": 2000 + Fancy.zIndex++
         });
         hideCombos(me.id);
       }

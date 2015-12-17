@@ -554,7 +554,7 @@ Fancy.Class('Fancy.Form', {
       left: (xy[0] + scrollLeft) + 'px',
       top: (xy[1] + scrollTop) + 'px',
       display: '',
-      "z-index": 1000 + Fancy.zIndex
+      "z-index": 1000 + Fancy.zIndex++
     });
 
     Fancy.select('.fancy-modal').css('display', '');
