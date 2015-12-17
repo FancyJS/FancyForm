@@ -40,6 +40,7 @@ Fancy.Class(['Fancy.form.field.TextArea', 'Fancy.TextArea'], {
     '</div>',
     '<div class="fancy-textarea-text">',
       '<textarea autocomplete="off" placeholder="{emptyText}" type="text" class="fancy-textarea-text-input" style="{inputWidth}height:{height}px;">{value}</textarea>',
+      '<div class="fancy-field-error" style="{errorTextStyle}"></div>',
     '</div>',
     '<div class="fancy-clearfix"></div>'
   ],

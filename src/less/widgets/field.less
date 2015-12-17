@@ -1,44 +1,44 @@
 .fancy-field {
-    height: @field-height;
-    padding: @field-padding;
+  height: @field-height;
+  padding: @field-padding;
   .fancy-field-label {
-        color: @field-label-color;
-        float: @field-label-float;
-        padding: @field-label-padding;
-    }
+    color: @field-label-color;
+    float: @field-label-float;
+    padding: @field-label-padding;
+  }
 
-    .fancy-field-text {
-      float: @field-text-float;
-    }
+  .fancy-field-text {
+    float: @field-text-float;
+  }
 
     .fancy-field-text-input {
-        border: @field-input-border;
-        background: @field-input-background;
-        padding: 7px;
-        margin: 0px;
-        height: @field-input-height;
-        color: @field-input-color;
-        font: normal 11px/16px tahoma, arial, sans-serif;
+      border: @field-input-border;
+      background: @field-input-background;
+      padding: 7px;
+      margin: 0px;
+      height: @field-input-height;
+      color: @field-input-color;
+      font: normal 11px/16px tahoma, arial, sans-serif;
       &:focus {
-            border-color: @field-input-border-color-focus;
-            outline: 0;
+        border-color: @field-input-border-color-focus;
+        outline: 0;
       }
     }
 }
 
 .fancy-field-not-valid {
-    .fancy-field-error {
-        display: block;
-    }
+  .fancy-field-error {
+    display: block;
+  }
     
-    input {
-        background: #ffe9e9 !important;
-        border: 1px solid #f9d3d5 !important;
-    }
+  input {
+    background: #ffe9e9 !important;
+    border: 1px solid #f9d3d5 !important;
+  }
 }
 
 .fancy-field-blank-err {
-    input{
+    input, textarea {
         //border: 1px solid #cf4c35 !important;
         background: #ffe9e9 !important;
         border: 1px solid #f9d3d5 !important;
@@ -52,6 +52,7 @@
     display: none;
     color: @field-color-error;
     font-size: 10px;
+    margin-left: 5px;
 }
 
 .fancy-combo.fancy-field-blank-err {

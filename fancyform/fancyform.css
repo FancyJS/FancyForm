@@ -125,7 +125,8 @@ td {
   background: #ffe9e9 !important;
   border: 1px solid #f9d3d5 !important;
 }
-.fancy-field-blank-err input {
+.fancy-field-blank-err input,
+.fancy-field-blank-err textarea {
   background: #ffe9e9 !important;
   border: 1px solid #f9d3d5 !important;
 }
@@ -136,6 +137,7 @@ td {
   display: none;
   color: #cf5a65;
   font-size: 10px;
+  margin-left: 5px;
 }
 .fancy-combo.fancy-field-blank-err table {
   border: 1px solid #f9d3d5 !important;

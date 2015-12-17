@@ -105,7 +105,7 @@ Fancy.form.field.Trait.prototype = {
         value: me.value,
         height: me.height,
         itemsHTML: itemsHTML,
-        errorTextStyle: 'margin-left: ' + ( _labelWidth ) + 'px;'
+        errorTextStyle: ''
       });
     }
 
