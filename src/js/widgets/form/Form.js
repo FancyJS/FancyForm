@@ -584,14 +584,15 @@ Fancy.Class('Fancy.Form', {
     if( me.window !== true ){
       return;
     }
-
+    
     var viewSize = Fancy.getViewSize(),
       height = me.el.height(),
       width = me.el.width(),
       xy = [],
-      scrollTop = document.body.scrollTop,
-      scrollLeft = document.body.scrollLeft;
-
+      scroll = Fancy.getScroll(),
+      scrollTop = scroll[0],
+      scrollLeft = scroll[1];
+      
     xy[0] = (viewSize[1] - width)/2;
     xy[1] = (viewSize[0] - height)/2;
 

@@ -328,8 +328,8 @@ Fancy.getViewSize = function(){
   var xy = [];
   
   if(Fancy.isIE){
-    xy[0] = document.documentElement.clientWidth;
-    xy[1] = document.documentElement.clientHeight;
+    xy[0] = document.documentElement.clientHeight;
+    xy[1] = document.documentElement.clientWidth;
   }
   else{
     xy[0] = window.innerHeight;
@@ -337,6 +337,19 @@ Fancy.getViewSize = function(){
   }
   
   return xy;
+};
+
+Fancy.getScroll = function() {
+  var dd = document.documentElement,
+    db = document.body;
+
+  if (dd && (dd.scrollTop || dd.scrollLeft)) {
+    return [dd.scrollTop, dd.scrollLeft];
+  } else if (db) {
+    return [db.scrollTop, db.scrollLeft];
+  } else {
+    return [0, 0];
+  }
 };
 
 })();
