@@ -21,6 +21,7 @@
       pathToSrc + 'widgets/button/Button.js',
       pathToSrc + 'widgets/tab/Tab.js',
       pathToSrc + 'widgets/panel/Panel.js',
+      pathToSrc + 'widgets/panel/Tool.js',
 
       pathToSrc + 'widgets/form/Form.js',
       pathToSrc + 'widgets/field/Trait.js',

@@ -42,7 +42,8 @@ Fancy.Class('Fancy.Form', {
       style: style,
       modal: config.modal,
       theme: config.theme || '',
-      tools: config.tools || undefined
+      tools: config.tools || undefined,
+      scope: me
     });
     config.renderTo = p.el.getByClass('fancy-panel-body');
     config.isPanel = true;
@@ -415,11 +416,11 @@ Fancy.Class('Fancy.Form', {
         case 'set':
         case 'fieldset':
           item.on('collapsed', function(){
-            console.log('collapsed');
+            //console.log('collapsed');
           });
 
           item.on('expanded', function(){
-            console.log('expanded');
+            //console.log('expanded');
           });
           break;
         case 'tab':
@@ -624,6 +625,14 @@ Fancy.Class('Fancy.Form', {
     });
 
     Fancy.select('.fancy-modal').css('display', 'none');
+    var i = 0,
+        iL = me.items.length;
+
+    for(;i<iL;i++){
+      if(me.items[i].type === 'combo'){
+        me.items[i].hideList();
+      }
+    }
   },
   setHeight: function(height){
     var me = this;

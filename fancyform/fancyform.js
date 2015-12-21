@@ -13,7 +13,7 @@ var Fancy = {
    * The version of the framework
    * @type String
    */
-  version: '0.2.5'
+  version: '0.2.6'
 };
 
 /**
@@ -1466,7 +1466,7 @@ Fancy.Class('Fancy.Widget', {
 });
 /**
  * @class Fancy.Button
- * @extends Fancy.Event
+ * @extends Fancy.Widget
  */
 Fancy.Class('Fancy.Button', {
   extend: Fancy.Widget,
@@ -1696,32 +1696,81 @@ Fancy.Class('Fancy.Panel', {
       return;
     }
 
-    me.toolMap = {};
-
-    var html = '',
-      i = 0,
+    var i = 0,
       iL = tools.length;
 
     for(;i<iL;i++){
-      var tool = tools[i],
-        id = Fancy.id();
-
-      me.toolMap[id] = tool;
-
-      html += '<div id="'+id+'" class="fancy-tool-button">' + tool.text + '</div>';
+      me.tools[i].renderTo = me.el.select('.fancy-panel-header-tools')[0];
+      me.tools[i] = new Fancy.Tool(me.tools[i], me.scope);
     }
+  }
+});
+/**
+ * @class Fancy.Tool
+ * @extends Fancy.Widget
+ */
+Fancy.Class('Fancy.Tool', {
+  extend: Fancy.Widget,
+  constructor: function(config, scope){
+    var me = this;
 
-    me.el.select('.fancy-panel-header-tools')[0].innerHTML = html;
+    me.scope = scope;
 
-    Fancy.select('.fancy-tool-button').on('click', function(e){
-      var target = e.target,
-        id = target.id,
-        handler = me.toolMap[id].handler;
+    me.Super('const', arguments);
+  },
+  init: function(){
+    var me = this;
 
-      if( handler ){
-        handler();
+    me.addEvents('click', 'mousedown', 'mouseup', 'mouseover', 'mouseout');
+    me.Super('init', arguments);
+
+    me.style = me.style || {};
+
+    me.render();
+    me.setOns();
+  },
+  setOns: function(){
+    var me = this,
+      el = me.el;
+
+    el.on('click', me.onClick, me);
+  },
+  cls: 'fancy fancy-button',
+  text: '',
+  height: 28,
+  paddingTextWidth: 5,
+  render: function(){
+    var me = this,
+      renderTo = Fancy.get(me.renderTo || document.body).dom,
+      el = document.createElement('div'),
+      width = 0;
+
+    me.fire('beforerender');
+
+    el.className = 'fancy-tool-button';
+    el.innerHTML = me.text;
+    me.el = Fancy.get( renderTo.appendChild(el) );
+
+    me.fire('afterrender');
+    me.fire('render');
+  },
+  onClick: function(){
+    var me = this;
+
+    me.fire('click');
+    if( me.handler ){
+      if( me.scope ){
+        me.handler.apply(me.scope, [me]);
       }
-    });
+      else{
+        me.handler(me);
+      }
+    }
+  },
+  setText: function(value){
+    var me = this;
+
+    me.el.update(value)
   }
 });
 /**
@@ -1768,7 +1817,8 @@ Fancy.Class('Fancy.Form', {
       style: style,
       modal: config.modal,
       theme: config.theme || '',
-      tools: config.tools || undefined
+      tools: config.tools || undefined,
+      scope: me
     });
     config.renderTo = p.el.getByClass('fancy-panel-body');
     config.isPanel = true;
@@ -2141,11 +2191,11 @@ Fancy.Class('Fancy.Form', {
         case 'set':
         case 'fieldset':
           item.on('collapsed', function(){
-            console.log('collapsed');
+            //console.log('collapsed');
           });
 
           item.on('expanded', function(){
-            console.log('expanded');
+            //console.log('expanded');
           });
           break;
         case 'tab':
@@ -2350,6 +2400,14 @@ Fancy.Class('Fancy.Form', {
     });
 
     Fancy.select('.fancy-modal').css('display', 'none');
+    var i = 0,
+        iL = me.items.length;
+
+    for(;i<iL;i++){
+      if(me.items[i].type === 'combo'){
+        me.items[i].hideList();
+      }
+    }
   },
   setHeight: function(height){
     var me = this;
@@ -2446,7 +2504,6 @@ Fancy.form.field.Trait.prototype = {
     if( me.labelAlign === 'top' && me.label ){
       //auto fixing of wrang labelWidth.
       //will not fix right if user change color of label font-size to bigger
-      console.log(me.label);
       if( me.labelWidth < me.label.length * 7 ){
         me.labelWidth = (me.label.length + 2) * 7;
       }
@@ -3065,14 +3122,12 @@ Fancy.Class(['Fancy.form.field.TextArea', 'Fancy.TextArea'], {
       height = value.match(/\n/g).length * me.lineHeight;
 
     if( height < me.minHeight ){
-      console.log('in 2');
       height = me.minHeight;
       input.css({
         'overflow-y': 'hidden'
       });
     }
     else if(height > me.maxHeight){
-      console.log('in 3');
       height = me.maxHeight;
       input.css({
         'overflow-y': 'scroll'

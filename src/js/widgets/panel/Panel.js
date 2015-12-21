@@ -79,31 +79,12 @@ Fancy.Class('Fancy.Panel', {
       return;
     }
 
-    me.toolMap = {};
-
-    var html = '',
-      i = 0,
+    var i = 0,
       iL = tools.length;
 
     for(;i<iL;i++){
-      var tool = tools[i],
-        id = Fancy.id();
-
-      me.toolMap[id] = tool;
-
-      html += '<div id="'+id+'" class="fancy-tool-button">' + tool.text + '</div>';
+      me.tools[i].renderTo = me.el.select('.fancy-panel-header-tools')[0];
+      me.tools[i] = new Fancy.Tool(me.tools[i], me.scope);
     }
-
-    me.el.select('.fancy-panel-header-tools')[0].innerHTML = html;
-
-    Fancy.select('.fancy-tool-button').on('click', function(e){
-      var target = e.target,
-        id = target.id,
-        handler = me.toolMap[id].handler;
-
-      if( handler ){
-        handler();
-      }
-    });
   }
 });

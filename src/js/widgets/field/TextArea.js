@@ -90,14 +90,12 @@ Fancy.Class(['Fancy.form.field.TextArea', 'Fancy.TextArea'], {
       height = value.match(/\n/g).length * me.lineHeight;
 
     if( height < me.minHeight ){
-      console.log('in 2');
       height = me.minHeight;
       input.css({
         'overflow-y': 'hidden'
       });
     }
     else if(height > me.maxHeight){
-      console.log('in 3');
       height = me.maxHeight;
       input.css({
         'overflow-y': 'scroll'

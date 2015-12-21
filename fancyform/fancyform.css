@@ -264,6 +264,9 @@ td {
   background: #000;
   opacity: 0.2;
 }
+.fancy-textarea {
+  height: auto !important;
+}
 .fancy-textarea .fancy-textarea-label {
   float: left;
   color: #777;

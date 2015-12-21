@@ -13,7 +13,7 @@ var Fancy = {
    * The version of the framework
    * @type String
    */
-  version: '0.2.5'
+  version: '0.2.6'
 };
 
 /**

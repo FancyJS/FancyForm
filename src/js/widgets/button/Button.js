@@ -1,6 +1,6 @@
 /**
  * @class Fancy.Button
- * @extends Fancy.Event
+ * @extends Fancy.Widget
  */
 Fancy.Class('Fancy.Button', {
   extend: Fancy.Widget,
